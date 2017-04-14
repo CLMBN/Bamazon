@@ -26,3 +26,14 @@ connection.connect(function(err){
 	});
 });
 
+// function to show menu of available items
+function showAllProducts() {
+	return new Promise(function(resolve, reject) {
+		//use select to bring back all products in the table
+		connection.query("SELECT * FROM products", function(err, res) {
+			if (err) reject(err);
+			resolve(res);
+		});
+	});
+}
+
