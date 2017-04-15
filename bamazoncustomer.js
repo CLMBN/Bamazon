@@ -4,7 +4,7 @@ var inquirer = require('inquirer');
 
 //mySQL connection
 var connection = mysql.createConnection({
-	host: "localhost",
+	host: 'localhost',
 	port: 3306,
 	user: 'root',
 	password: 'test',
@@ -17,7 +17,11 @@ connection.connect(function(err){
 	// show all products available
 	showAllProducts().then(function(result) {
 		//list each item
-		result.showEach(function(item){
+		console.log(" ");
+		console.log("===============Bamazon Store Front================");
+		console.log("======Please Choose your item to add to cart======");
+		console.log(" ");
+		result.forEach(function(item){
 			console.log('Item ID: ' + item.item_id + ' | Product Name: ' + item.product_name + ' | Price: ' + item.price);
 		});
 	//after menu is displayed ask what user would like to do
@@ -30,7 +34,7 @@ connection.connect(function(err){
 function showAllProducts() {
 	return new Promise(function(resolve, reject) {
 		//use select to bring back all products in the table
-		connection.query("SELECT * FROM products", function(err, res) {
+		connection.query("SELECT * FROM products;", function(err, res) {
 			if (err) reject(err);
 			resolve(res);
 		});
